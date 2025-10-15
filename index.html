@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora </title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      background: rgba(0,0,0,0.45);
+      padding: 30px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 80%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    button {
+      width: 50%;
+      padding: 12px;
+      margin: 15px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+    }
+
+    #resultado {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.1);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .voltar {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      background: linear-gradient(135deg, #ff7a7a, #ffb86b);
+      padding: 10px 20px;
+      border-radius: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .voltar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+      background: linear-gradient(135deg, #ffb86b, #ff7a7a);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧮 Calculadora </h1>
+    
+    <input type="number" step="0.01" id="odd1" placeholder="Cotação 1">
+    <input type="number" step="0.01" id="odd2" placeholder="Cotação 2">
+    <input type="number" step="0.01" id="max1" placeholder="Máx. valor cotação 1">
+    <br>
+    <button id="calcular">Calcular</button>
+
+    <div id="resultado"></div>
+
+    <a href="index.html" class="voltar">⬅ Voltar</a>
+  </div>
+
+  <script>
+    document.getElementById("calcular").addEventListener("click", function(){
+      const odd1 = parseFloat(document.getElementById("odd1").value);
+      const odd2 = parseFloat(document.getElementById("odd2").value);
+      const max1 = parseFloat(document.getElementById("max1").value);
+      const resultadoEl = document.getElementById("resultado");
+
+      if (isNaN(odd1) || isNaN(odd2) || isNaN(max1)) {
+        resultadoEl.innerText = "❌ Preencha todos os campos corretamente!";
+        return;
+      }
+
+      const aposta2 = (odd1 / odd2) * max1;
+      const lucro = max1 * odd1 - (max1 + aposta2);
+
+      resultadoEl.innerText = 
+        ` R$${max1.toFixed(2)} na odd ${odd1} \n R$${aposta2.toFixed(2)} na odd ${odd2}.\n Lucro esperado: R$${lucro.toFixed(2)}`;
+    });
+  </script>
+</body>
+</html>
