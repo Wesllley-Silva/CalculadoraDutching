@@ -158,7 +158,7 @@
       const tabelaDiv = document.getElementById("tabela");
       let html = "<table><tr><th>Odd 1</th><th>Odd 2 mínima (0%)</th></tr>";
 
-      for (let i = 1.01; i <= 2.50; i += 0.01) {
+      for (let i = 1.01; i <= 2.00; i += 0.01) {
         const odd1 = parseFloat(i.toFixed(2));
         const odd2 = odd1 / (odd1 - 1);
         html += `<tr><td>${odd1.toFixed(2)}</td><td>${odd2.toFixed(2)}</td></tr>`;
